@@ -1,0 +1,3 @@
+export(clearseq_with_extend)
+export(ambient_correction_bayesian)
+export(integrate_seurat_extend)
