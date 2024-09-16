@@ -6,12 +6,12 @@ ClearSeqExtend is an R package that integrates SeuratExtend for enhanced single-
 
 Welcome to the ClearSeqExtend tutorial! This package integrates ambient RNA correction, clustering, RNA velocity, and more for enhanced scRNA-seq analysis using Seurat and SeuratExtend. In this tutorial, we will walk you through the installation, usage, and practical examples to get started with ClearSeqExtend.
 
-```r
+
 2. Installation
 
 To install the ClearSeqExtend package, follow these steps:
 
-```r
+
 
 # Install the devtools package if you don't have it
 install.packages("devtools")
@@ -23,7 +23,6 @@ devtools::install_github("madhubioinformatics/ClearSeqExtend")
 
 After installation, load the ClearSeqExtend package along with other dependencies:
 
-```r
 
 # Load the required libraries
 library(Seurat)
@@ -33,7 +32,7 @@ library(ClearSeqExtend)
 
 In this example, we will use the 10X Genomics PBMC dataset. You can download the dataset using the following command:
 
-```r
+
 
 # Download the dataset (if not already downloaded)
 download.file("https://cf.10xgenomics.com/samples/cell-exp/6.1.2/10k_PBMC_3p_nextgem_Chromium_X/10k_PBMC_3p_nextgem_Chromium_X_raw_feature_bc_matrix.h5", 
@@ -49,7 +48,7 @@ seurat_obj <- CreateSeuratObject(counts = pbmc_data, project = "PBMC")
 
 Next, we will perform ambient RNA correction using ClearSeqExtend and integrate SeuratExtend functionalities for normalization and dimensionality reduction.
 
-```r
+
 
 # Perform ambient RNA correction and integrate SeuratExtend
 seurat_obj <- clearseq_with_extend(seurat_obj, threshold = 10)
@@ -62,7 +61,7 @@ This function performs ambient RNA correction, normalization, PCA, and UMAP.
 
 Once the ambient RNA has been corrected and the data normalized, you can perform clustering and visualize the UMAP plot.
 
-```r
+
 
 # Find neighbors and clusters
 seurat_obj <- FindNeighbors(seurat_obj, dims = 1:10)
@@ -74,7 +73,7 @@ DimPlot(seurat_obj, reduction = "umap", label = TRUE)
 
 If you have a .loom file for RNA velocity analysis, you can integrate RNA velocity using ClearSeqExtend.
 
-```r
+
 
 # RNA velocity using loom file (replace with your loom path)
 loom_path <- "path/to/your/loom_file.loom"
@@ -83,7 +82,7 @@ velocity_obj <- run_velocity(seurat_obj, loom_path = loom_path)
 
 You can save the processed Seurat object or export the data in various formats such as .loom or .h5ad.
 
-```r
+
 
 # Save Seurat object
 saveRDS(seurat_obj, file = "processed_pbmc_seurat.rds")
@@ -95,8 +94,5 @@ ExportToLoom(seurat_obj, filename = "pbmc_seurat.loom")
 
 Congratulations! You have successfully run the ClearSeqExtend pipeline for ambient RNA correction, clustering, and RNA velocity analysis. This tutorial is a starting point for more advanced analyses.
 
-## Installation
-To install the package from GitHub, use the following:
 ```r
-devtools::install_github("madhubioinformatics/ClearSeqExtend")
 
