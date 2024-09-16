@@ -1,0 +1,95 @@
+---
+title: "ClearSeqExtend: A Step-by-Step Tutorial"
+author: "Your Name"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ClearSeqExtend Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+Welcome to the **ClearSeqExtend** tutorial! This package integrates ambient RNA correction, clustering, RNA velocity, and more for enhanced scRNA-seq analysis using Seurat and SeuratExtend. In this tutorial, we will walk you through the installation, usage, and practical examples.
+
+# Installation
+
+To install the **ClearSeqExtend** package:
+
+```r
+# Install the devtools package if you don't have it
+install.packages("devtools")
+
+# Install ClearSeqExtend from GitHub
+devtools::install_github("madhubioinformatics/ClearSeqExtend")
+
+
+Loading the Package
+
+After installation, load the ClearSeqExtend package:
+
+library(Seurat)
+library(SeuratExtend)
+library(ClearSeqExtend)
+
+
+Example Dataset
+
+We will use the 10X Genomics PBMC dataset. Download and load the dataset:
+
+# Download the dataset (if not already downloaded)
+download.file("https://cf.10xgenomics.com/samples/cell-exp/6.1.2/10k_PBMC_3p_nextgem_Chromium_X/10k_PBMC_3p_nextgem_Chromium_X_raw_feature_bc_matrix.h5", 
+              destfile = "10k_PBMC_3p_nextgem_Chromium_X_raw_feature_bc_matrix.h5")
+
+# Load the dataset into Seurat
+pbmc_data <- Read10X_h5("10k_PBMC_3p_nextgem_Chromium_X_raw_feature_bc_matrix.h5")
+
+# Create a Seurat object
+seurat_obj <- CreateSeuratObject(counts = pbmc_data, project = "PBMC")
+
+
+Ambient RNA Correction and SeuratExtend Integration
+
+Next, we will perform ambient RNA correction using ClearSeqExtend:
+
+# Perform ambient RNA correction and integrate SeuratExtend
+seurat_obj <- clearseq_with_extend(seurat_obj, threshold = 10)
+
+# Check the contents of the Seurat object
+seurat_obj
+
+
+Clustering and Visualization
+
+You can now perform clustering and visualize the UMAP plot:
+
+# Find neighbors and clusters
+seurat_obj <- FindNeighbors(seurat_obj, dims = 1:10)
+seurat_obj <- FindClusters(seurat_obj, resolution = 0.5)
+
+# Visualize the clusters using UMAP
+DimPlot(seurat_obj, reduction = "umap", label = TRUE)
+
+
+RNA Velocity (Optional)
+
+# RNA velocity using loom file
+loom_path <- "path/to/your/loom_file.loom"
+velocity_obj <- run_velocity(seurat_obj, loom_path = loom_path)
+
+
+Saving the Results
+
+# Save the processed Seurat object
+saveRDS(seurat_obj, file = "processed_pbmc_seurat.rds")
+
+# Export to loom file
+ExportToLoom(seurat_obj, filename = "pbmc_seurat.loom")
+
+
+
+Conclusion
+
+Congratulations! You have successfully run the ClearSeqExtend pipeline for ambient RNA correction and clustering.
+
+
