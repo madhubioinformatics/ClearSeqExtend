@@ -6,7 +6,7 @@ Installation
 To install the ClearSeqExtend package from GitHub, follow these steps:
 
 r
-**
+--
 # Install devtools if not already installed
 install.packages("devtools")
 
@@ -21,7 +21,7 @@ Loading the Package
 After installation, load ClearSeqExtend, Seurat, and SeuratExtend packages:
 
 r
-Copy code
+--
 library(Seurat)
 library(SeuratExtend)
 library(ClearSeqExtend)
@@ -31,7 +31,7 @@ Below is a step-by-step guide on how to use ClearSeqExtend for ambient RNA corre
 1. Load the Dataset and Create a Seurat Object
 
 r
-
+--
 # Load your dataset (e.g., PBMC dataset from 10X Genomics)
 pbmc_data <- Read10X_h5("path_to_data/10k_PBMC_3p_nextgem_Chromium_X_raw_feature_bc_matrix.h5")
 
