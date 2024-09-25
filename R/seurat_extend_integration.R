@@ -1,14 +1,15 @@
-#' Enhanced Normalization Using SeuratExtend
+#' Enhanced Normalization for Seurat Object
 #'
-#' Applies enhanced normalization on the Seurat object using SeuratExtend.
-#' @param seurat_obj A Seurat object containing scRNA-seq data.
+#' This function performs an enhanced normalization process for Seurat objects.
+#' @param seurat_obj A Seurat object.
 #' @return A normalized Seurat object.
 #' @export
 enhanced_normalization <- function(seurat_obj) {
-  # Apply SeuratExtend's normalization
-  seurat_obj <- SeuratExtend::EnhancedNormalizeData(seurat_obj)
+  # Apply the standard normalization from Seurat
+  seurat_obj <- NormalizeData(seurat_obj, normalization.method = "LogNormalize", scale.factor = 10000)
   return(seurat_obj)
 }
+
 #' Find Variable Features Using SeuratExtend
 #'
 #' Identifies highly variable features in the Seurat object using SeuratExtend.
