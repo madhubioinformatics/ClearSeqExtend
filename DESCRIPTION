@@ -1,17 +1,14 @@
 Package: ClearSeqExtend
 Type: Package
-Title: ClearSeqExtend: An Enhanced Toolkit for Ambient RNA Correction in scRNA-seq Data
+Title: ClearSeqExtend: An Enhanced Toolkit for Ambient RNA Correction
 Version: 0.2.0
-Author: Your Name <your.email@example.com>
+Author: Your Name
 Maintainer: Your Name <your.email@example.com>
-Description: ClearSeqExtend offers ambient RNA correction and robust tools for single-cell RNA-seq data analysis, integrating Seurat and SeuratExtend functionalities for normalization, clustering, RNA velocity analysis, and visualization.
-License: MIT + file LICENSE
+Description: A package for ambient RNA correction in scRNA-seq data.
+License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
 Imports:
     Seurat,
     SeuratExtend,
-    Matrix,
-    ggplot2
-VignetteBuilder: knitr
+    Matrix
