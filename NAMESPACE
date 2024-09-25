@@ -4,6 +4,7 @@ export(run_pca_extend)
 export(run_umap_extend)
 export(cluster_cells_extend)
 export(umap_plot_extend)
+export(clearseq_with_extend)
 
 
 
