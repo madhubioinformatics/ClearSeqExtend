@@ -1,14 +1,15 @@
 #' Enhanced Normalization for Seurat Object
 #'
-#' This function performs an enhanced normalization process for Seurat objects.
+#' This function performs an enhanced normalization process for Seurat objects, applying custom scaling factors or methods.
 #' @param seurat_obj A Seurat object.
 #' @return A normalized Seurat object.
 #' @export
-enhanced_normalization <- function(seurat_obj) {
-  # Apply the standard normalization from Seurat
-  seurat_obj <- NormalizeData(seurat_obj, normalization.method = "LogNormalize", scale.factor = 10000)
+enhanced_normalization <- function(seurat_obj, scale.factor = 10000, method = "LogNormalize") {
+  # Apply Seurat's standard normalization or any custom normalization logic
+  seurat_obj <- NormalizeData(seurat_obj, normalization.method = method, scale.factor = scale.factor)
   return(seurat_obj)
 }
+
 
 #' Find Variable Features Using SeuratExtend
 #'
