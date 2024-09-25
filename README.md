@@ -1,4 +1,4 @@
-ClearSeqExtend: An Enhanced Toolkit for Ambient RNA Correction in scRNA-seq Data
+**ClearSeqExtend: An Enhanced Toolkit for Ambient RNA Correction in scRNA-seq Data
 
 ClearSeqExtend is an R package that provides ambient RNA correction and integrates advanced single-cell RNA-seq analysis functionalities from SeuratExtend. The package enables robust data correction, clustering, dimensionality reduction, and visualization, all designed for analyzing large-scale scRNA-seq datasets efficiently.
 
