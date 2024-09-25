@@ -1,3 +1,12 @@
-export(clearseq_with_extend)
-export(ambient_correction_bayesian)
-export(integrate_seurat_extend)
+#' Integrate SeuratExtend for Enhanced Analysis
+#'
+#' This function integrates SeuratExtend functionalities with the Seurat object.
+#' @param seurat_obj A Seurat object containing scRNA-seq data.
+#' @return A Seurat object with SeuratExtend functions applied.
+#' @export
+integrate_seurat_extend <- function(seurat_obj) {
+  # Placeholder for SeuratExtend integration
+  seurat_obj <- SeuratExtend::EnhancedNormalizeData(seurat_obj)
+  return(seurat_obj)
+}
+
