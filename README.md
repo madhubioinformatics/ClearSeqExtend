@@ -6,7 +6,7 @@ Installation
 To install the ClearSeqExtend package from GitHub, follow these steps:
 
 r
-Copy code
+**
 # Install devtools if not already installed
 install.packages("devtools")
 
