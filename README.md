@@ -5,8 +5,8 @@ ClearSeqExtend is an R package designed for robust ambient RNA correction in sin
 Installation
 To install the ClearSeqExtend package from GitHub, follow these steps:
 
-r
---
+--r
+
 # Install devtools if not already installed
 install.packages("devtools")
 
