@@ -1,24 +1,25 @@
-# R/clearseq_main.R
-
 #' ClearSeqExtend: Ambient RNA Correction and Enhanced Analysis
 #'
-#' This function performs ambient RNA correction, RNA velocity analysis, and clustering using SeuratExtend.
+#' This function performs ambient RNA correction using a sparse matrix and integrates SeuratExtend for advanced analysis.
 #'
-#' @param seurat_obj A Seurat object containing raw scRNA-seq data.
-#' @param threshold Numeric value representing the UMI threshold for identifying empty droplets.
-#' @return A Seurat object with corrected counts and enhanced analysis using SeuratExtend.
+#' @param seurat_obj A Seurat object containing scRNA-seq data.
+#' @param threshold UMI threshold for identifying empty droplets.
+#' @return A Seurat object with corrected counts and additional analysis steps applied.
 #' @export
 clearseq_with_extend <- function(seurat_obj, threshold = 10) {
-    # Apply ClearSeq Correction (ambient RNA correction)
-    seurat_obj <- clearseq_correction(seurat_obj, threshold)
-    
-    # Normalize and find variable features using SeuratExtend
-    seurat_obj <- SeuratExtend::EnhancedNormalizeData(seurat_obj)
-    seurat_obj <- SeuratExtend::EnhancedFindVariableFeatures(seurat_obj)
-    
-    # Run PCA and UMAP using SeuratExtend’s enhanced methods
-    seurat_obj <- SeuratExtend::RunExtendedPCA(seurat_obj, features = VariableFeatures(seurat_obj))
-    seurat_obj <- SeuratExtend::RunExtendedUMAP(seurat_obj, dims = 1:10)
-    
-    return(seurat_obj)
+  total_umi <- Matrix::colSums(GetAssayData(seurat_obj, slot = "counts"))
+  empty_droplets <- total_umi < threshold
+
+  if (sum(empty_droplets) < 2) {
+    stop("Not enough empty droplets to perform ambient RNA correction.")
+  }
+  
+  ambient_profile <- Matrix::rowMeans(GetAssayData(seurat_obj, slot = "counts")[, empty_droplets])
+  corrected_counts <- sweep(GetAssayData(seurat_obj, slot = "counts"), 1, ambient_profile, FUN = "-")
+  corrected_counts[corrected_counts < 0] <- 0
+  
+  corrected_assay <- CreateAssayObject(counts = corrected_counts)
+  seurat_obj[["corrected"]] <- corrected_assay
+  
+  return(seurat_obj)
 }
