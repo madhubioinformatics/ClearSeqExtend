@@ -3,7 +3,7 @@
 > **An enhanced toolkit for ambient RNA correction and end‑to‑end scRNA‑seq analysis in R**
 
 <p align="center">
-  <img src="docs/figs/clearseqextend_banner.png" alt="ClearSeqExtend banner" width="760"/>
+  <img src="docs/figs/ClearSeq.png" alt="ClearSeqExtend banner" width="760"/>
 </p>
 
 <p align="center">
@@ -74,7 +74,7 @@ print(umap_plot)
 ```
 
 <p align="center">
-  <img src="docs/figs/example_umap.png" alt="Example UMAP" width="520"/>
+  <img src="docs/figs/UMAP_celltypes.png" alt="Example UMAP" width="520"/>
 </p>
 
 ---
